@@ -231,6 +231,17 @@ button:hover {
 #response-display {
     min-height: 100px;
     background-color: #f6f8fa;
+    padding: 15px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#response-display.success {
+    border-left: 4px solid #49cc90;
+}
+
+#response-display.error {
+    border-left: 4px solid #f93e3e;
 }
 
 /* Footer styles */

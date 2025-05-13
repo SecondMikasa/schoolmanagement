@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Define the endpoint URLs
     const endpointUrls = {
-        health: '/health',
-        listSchools: '/api/schools/listSchools',
-        addSchool: '/api/schools/addSchool'
+        health: 'https://schoolmanagement-fnrl.onrender.com/health',
+        listSchools: 'https://schoolmanagement-fnrl.onrender.com/api/schools/listSchools',
+        addSchool: 'https://schoolmanagement-fnrl.onrender.com/api/schools/addSchool'
     };
     
     // Define the HTTP methods for each endpoint
@@ -64,32 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             paramsContainer.appendChild(formGroup);
         });
         
-        // If it's a POST request, add a JSON editor for the request body
-        if (endpointMethods[selectedEndpoint] === 'POST') {
-            const formGroup = document.createElement('div');
-            formGroup.className = 'form-group';
-            
-            const label = document.createElement('label');
-            label.setAttribute('for', 'request-body');
-            label.textContent = 'Request Body (JSON)';
-            
-            const textarea = document.createElement('textarea');
-            textarea.setAttribute('id', 'request-body');
-            textarea.setAttribute('rows', '8');
-            textarea.setAttribute('placeholder', 'Enter JSON request body');
-            
-            // Create a default JSON body based on the parameters
-            const defaultBody = {};
-            params.forEach(param => {
-                defaultBody[param.name] = '';
-            });
-            
-            textarea.value = JSON.stringify(defaultBody, null, 2);
-            
-            formGroup.appendChild(label);
-            formGroup.appendChild(textarea);
-            paramsContainer.appendChild(formGroup);
-        }
+        // No JSON editor for request body - we'll use the form fields directly
     }
     
     // Initialize parameter fields
@@ -132,26 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     url = `${url}?${queryParams.toString()}`;
                 }
             } else if (method === 'POST') {
-                // For POST requests, add request body
-                const requestBodyElement = document.getElementById('request-body');
-                if (requestBodyElement) {
-                    try {
-                        const bodyData = JSON.parse(requestBodyElement.value);
-                        options.body = JSON.stringify(bodyData);
-                    } catch (error) {
-                        throw new Error('Invalid JSON in request body');
+                // Build body from form fields
+                const bodyData = {};
+                endpointParams[selectedEndpoint].forEach(param => {
+                    const inputElement = document.getElementById(`param-${param.name}`);
+                    if (inputElement) {
+                        bodyData[param.name] = inputElement.value;
                     }
-                } else {
-                    // If no textarea exists, build body from form fields
-                    const bodyData = {};
-                    endpointParams[selectedEndpoint].forEach(param => {
-                        const inputElement = document.getElementById(`param-${param.name}`);
-                        if (inputElement) {
-                            bodyData[param.name] = inputElement.value;
-                        }
-                    });
-                    options.body = JSON.stringify(bodyData);
-                }
+                });
+                options.body = JSON.stringify(bodyData);
             }
             
             // Make the API request
