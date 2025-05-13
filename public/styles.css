@@ -1,0 +1,277 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+/* Main content styles */
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+/* API Endpoint cards */
+.endpoint-card {
+    margin-bottom: 30px;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.endpoint-card:last-child {
+    margin-bottom: 0;
+}
+
+.endpoint-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.method {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    margin-right: 15px;
+    font-size: 0.9rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+.get {
+    background-color: #61affe;
+}
+
+.post {
+    background-color: #49cc90;
+}
+
+.put {
+    background-color: #fca130;
+}
+
+.delete {
+    background-color: #f93e3e;
+}
+
+.route {
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #3b4151;
+}
+
+.endpoint-details {
+    padding: 20px;
+}
+
+.endpoint-details h3 {
+    margin-bottom: 10px;
+    color: #3b4151;
+}
+
+.endpoint-details p {
+    margin-bottom: 20px;
+    color: #7f8c8d;
+}
+
+.params, .response {
+    margin-bottom: 20px;
+}
+
+.params h4, .response h4 {
+    margin-bottom: 10px;
+    color: #3b4151;
+    font-size: 1rem;
+}
+
+.params ul {
+    list-style-type: none;
+}
+
+.params ul li {
+    margin-bottom: 8px;
+    padding-left: 10px;
+    border-left: 3px solid #e1e4e8;
+}
+
+.type {
+    display: inline-block;
+    background-color: #e1e4e8;
+    color: #3b4151;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+pre {
+    background-color: #f6f8fa;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    color: #3b4151;
+}
+
+/* API Tester styles */
+.try-api {
+    margin-top: 20px;
+}
+
+.api-tester {
+    background-color: #f6f8fa;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #e1e4e8;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+select, input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.response-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+}
+
+.response-container h3 {
+    margin-bottom: 10px;
+    color: #3b4151;
+}
+
+#response-display {
+    min-height: 100px;
+    background-color: #f6f8fa;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    color: #7f8c8d;
+    border-top: 1px solid #e1e4e8;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header {
+        margin-bottom: 20px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 15px;
+    }
+    
+    .endpoint-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .method {
+        margin-bottom: 10px;
+    }
+}

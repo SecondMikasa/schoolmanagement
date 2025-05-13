@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management API Routes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>School Management API</h1>
+            <p>Documentation for available API endpoints</p>
+        </header>
+
+        <main>
+            <section class="api-section">
+                <h2>API Endpoints</h2>
+                
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="route">/api/schools/addSchool</span>
+                    </div>
+                    <div class="endpoint-details">
+                        <h3>Add a New School</h3>
+                        <p>Adds a new school to the database with location information.</p>
+                        
+                        <div class="params">
+                            <h4>Request Body:</h4>
+                            <ul>
+                                <li><strong>name</strong> <span class="type">String</span> - Name of the school</li>
+                                <li><strong>address</strong> <span class="type">String</span> - Physical address of the school</li>
+                                <li><strong>latitude</strong> <span class="type">Float</span> - Latitude coordinate (-90 to 90)</li>
+                                <li><strong>longitude</strong> <span class="type">Float</span> - Longitude coordinate (-180 to 180)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="response">
+                            <h4>Response:</h4>
+                            <pre><code>{
+  "success": true,
+  "message": "School added successfully",
+  "data": {
+    "id": 1,
+    "name": "Example School",
+    "address": "123 Education St",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "createdAt": "2025-05-13T10:30:00.000Z",
+    "updatedAt": "2025-05-13T10:30:00.000Z"
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <span class="route">/api/schools/listSchools</span>
+                    </div>
+                    <div class="endpoint-details">
+                        <h3>List All Schools</h3>
+                        <p>Retrieves all schools sorted by proximity to the provided location.</p>
+                        
+                        <div class="params">
+                            <h4>Query Parameters:</h4>
+                            <ul>
+                                <li><strong>latitude</strong> <span class="type">Float</span> - User's latitude coordinate</li>
+                                <li><strong>longitude</strong> <span class="type">Float</span> - User's longitude coordinate</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="response">
+                            <h4>Response:</h4>
+                            <pre><code>{
+  "success": true,
+  "message": "Schools retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "name": "Example School",
+      "address": "123 Education St",
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "createdAt": "2025-05-13T10:30:00.000Z",
+      "updatedAt": "2025-05-13T10:30:00.000Z",
+      "distance": 2.5
+    },
+    // More schools...
+  ]
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <span class="route">/health</span>
+                    </div>
+                    <div class="endpoint-details">
+                        <h3>Health Check</h3>
+                        <p>Checks if the server is running properly.</p>
+                        
+                        <div class="response">
+                            <h4>Response:</h4>
+                            <pre><code>{
+  "status": "ok",
+  "message": "Server is running"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="try-api">
+                <h2>Try the API</h2>
+                <div class="api-tester">
+                    <div class="form-group">
+                        <label for="endpoint-select">Select Endpoint:</label>
+                        <select id="endpoint-select">
+                            <option value="health">GET /health</option>
+                            <option value="listSchools">GET /api/schools/listSchools</option>
+                            <option value="addSchool">POST /api/schools/addSchool</option>
+                        </select>
+                    </div>
+
+                    <div id="params-container">
+                        <!-- Dynamic parameters will be added here based on selected endpoint -->
+                    </div>
+
+                    <button id="send-request">Send Request</button>
+
+                    <div class="response-container">
+                        <h3>Response</h3>
+                        <pre id="response-display"><code>Response will appear here</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>School Management API Documentation &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

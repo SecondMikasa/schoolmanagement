@@ -17,9 +17,15 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public')); // Serve static files from the public directory
 
 // Routes
 app.use('/api/schools', schoolRoutes);
+
+// Redirect root to API documentation
+app.get('/', (req, res) => {
+  res.redirect('/index.html');
+});
 
 app.get('/health', (req, res) => {
   res.status(200).json({
